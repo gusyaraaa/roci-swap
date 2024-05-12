@@ -1,0 +1,140 @@
+.wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.walletButton {
+  display: flex;
+  align-items: center;
+  z-index: 4;
+  cursor: pointer;
+
+  & > svg {
+    path {
+      fill: var(--colorGreenApple);
+    }
+  }
+}
+
+.address {
+  margin-right: 10px;
+}
+
+.menu {
+  position: absolute;
+  width: 200px;
+  height: 140px;
+  top: -38px;
+  right: -15px;
+  z-index: 3;
+  animation: menuPop var(--durNorm) var(--easeOutBack) 0s 1;
+  transform-origin: right top;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 16px 26px;
+  gap: 80px;
+  background: var(--colorControlBg);
+
+  border: 1px solid var(--colorControlBorder08);
+  box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  border-radius: 0px 0px 24px 24px;
+
+  .content {
+    margin-top: auto;
+    width: 100%;
+  }
+}
+
+@keyframes menuPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.menuButton {
+  display: block;
+  margin-top: 24px;
+
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--colorText);
+  text-decoration: none;
+  transition: background-color ease var(--durNorm);
+  color: var(--colorFf36);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--colorFf36);
+
+  .icon {
+    display: none;
+  }
+}
+
+@media (max-width: $desktopSmall) {
+  .menu {
+    display: none;
+  }
+
+  .connectButton {
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .walletButton {
+    width: 100%;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .menu {
+    display: flex;
+    align-items: center;
+    background: var(--colorControlBg);
+    border: 1px solid var(--colorControlBorder08);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    height: 64px;
+    top: 40px;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+
+    .content {
+      margin: 0;
+      height: 100%;
+
+      .menuButton {
+        margin: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        .icon {
+          display: flex;
+          width: 40px;
+          height: 40px;
+          background: var(--colorControlBorder08);
+          border: 1px solid var(--colorControlBorder08);
+          border-radius: 16px;
+          align-items: center;
+          justify-content: center;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

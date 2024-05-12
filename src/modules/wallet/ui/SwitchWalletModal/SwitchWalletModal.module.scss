@@ -1,0 +1,33 @@
+.title {
+  margin: 48px 0px;
+}
+
+.buttonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  & > span {
+    max-width: 200px;
+    text-align: center;
+  }
+}
+
+.connectors {
+  margin-top: 82px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+@media (max-width: $mobile) {
+  .title {
+    margin: 0;
+  }
+  .connectors {
+    margin-top: 72px;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+}

@@ -1,0 +1,52 @@
+.text {
+  &.truncateOne {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &.truncateMany {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
+
+  &.isCentered {
+    text-align: center;
+  }
+
+  &.isUppercased {
+    text-transform: uppercase;
+  }
+
+  &.isInLine {
+    display: inline;
+  }
+
+  @include iteratePropsArr(
+    'size',
+    'font-size',
+    (12, 13, 14, 15, 16, 18, 20, 22, 24, 28, 32, 36, 40, 44),
+    'px'
+  );
+
+  @include iteratePropsArr('weight', 'font-weight', (400, 500, 600, 700));
+
+  @include iteratePropsMap(
+    'color',
+    'color',
+    (
+      default: var(--colorText),
+      secondary: var(--colorTextSecondary50),
+      secondary80: var(--colorTextSecondary80),
+      branded: var(--colorBranded),
+      greenapple: var(--colorGreenApple),
+      error: var(--colorError),
+      errorSecondary: var(--colorError40),
+      greenapplesoft: var(--colorGreenAppleSoft),
+      ff36: var(--colorFf36),
+      warning: var(--colorWarning),
+    )
+  );
+}

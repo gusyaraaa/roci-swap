@@ -1,27 +1,122 @@
 :root {
-  --colorBgDeep: radial-gradient(
-      41.99% 41.99% at 56.08% 46.87%,
-      #ffffff 0%,
-      #faf8ff 100%
-    ),
-    radial-gradient(
-      60.01% 60.01% at 39.17% -1.17%,
-      rgba(123, 0, 255, 0.175) 0%,
-      rgba(132, 17, 255, 0.035) 60.68%,
-      rgba(146, 44, 255, 0) 100%
-    ),
-    radial-gradient(
-      151.04% 21.37% at 76.7% -2.39%,
-      rgba(0, 26, 255, 0.1512) 0%,
-      rgba(5, 0, 255, 0.0392) 44.71%,
-      rgba(24, 3, 255, 0) 100%
-    ),
-    linear-gradient(
-      360deg,
-      rgba(90, 64, 255, 0.006) 64.86%,
-      rgba(145, 135, 255, 0.234018) 101.61%
-    );
+  --colorBlurBg: rgba(255, 255, 255, 0.3);
 
+  --colorBranded: #3da2ff;
+  --colorBranded08: rgba(61, 162, 255, 0.08);
+  --colorBranded10: rgba(61, 162, 255, 0.1);
+  --colorBranded16: rgba(61, 162, 255, 0.16);
+  --colorBranded12: rgba(61, 162, 255, 0.12);
+  --colorBranded20: rgba(61, 162, 255, 0.2);
+  --colorBranded24: rgba(61, 162, 255, 0.24);
+  --colorBranded30: rgba(61, 162, 255, 0.3);
+  --colorBranded60: rgba(61, 162, 255, 0.6);
+
+  --colorGreenAppleSoft: #40fcad;
+  --colorGreenApple: rgb(0, 128, 0);
+  --colorGreenApple08: rgb(0, 128, 0, 0.08);
+  --colorGreenApple10: rgb(0, 128, 0, 0.1);
+  --colorGreenApple16: rgb(0, 128, 0, 0.16);
+  --colorGreenApple20: rgb(0, 128, 0, 0.2);
+  --colorGreenApple30: rgb(0, 128, 0, 0.3);
+  --colorGreenApple40: rgb(0, 128, 0, 0.4);
+  --colorGreenApple50: rgb(0, 128, 0, 0.5);
+  --colorGreenApple80: rgb(0, 128, 0, 0.6);
+
+  --colorBlue: rgba(66, 0, 255);
+  --colorBlue10: rgba(66, 0, 255, 0.1);
+  --colorBlue30: rgba(66, 0, 255, 0.3);
+  --colorBlue50: rgba(66, 0, 255, 0.5);
+
+  --colorError10: rgba(255, 61, 107, 0.1);
+  --colorError15: rgba(255, 61, 107, 0.15);
+  --colorError20: rgba(255, 61, 107, 0.2);
+  --colorError24: rgba(255, 61, 107, 0.24);
+  --colorError40: rgba(255, 61, 107, 0.4);
+  --colorError: rgba(255, 61, 107);
+  --colorErrorMessage: rgba(237, 181, 218, 0.8);
+
+  --colorWarning08: rgba(255, 201, 61, 0.08);
+  --colorWarning10: rgba(255, 201, 61, 0.1);
+  --colorWarning16: rgba(255, 201, 61, 0.16);
+  --colorWarning20: rgba(255, 201, 61, 0.2);
+  --colorWarning24: rgba(255, 201, 61, 0.24);
+  --colorWarning32: rgba(255, 201, 61, 0.32);
+  --colorWarning50: rgba(255, 201, 61, 0.5);
+  --colorWarning: rgba(255, 201, 61, 1);
+
+  // Text
   --colorText: #000626;
   --colorTextContrast: #ffffff;
+  --colorTextSecondary13: rgba(30, 39, 73, 0.13);
+  --colorTextSecondary16: rgba(30, 39, 73, 0.16);
+  --colorTextSecondary50: rgba(30, 39, 73, 0.5);
+  --colorTextSecondary80: rgba(30, 39, 73, 0.8);
+  --colorFf36: rgba(193, 217, 254, 0.36);
+  --colorFf72: rgba(193, 217, 254, 0.72);
+
+  // Background
+  --colorBgDeep: #f9fafe;
+  --colorBgError: #ffffff;
+
+  // Borders
+  --colorBorder: rgba(140, 125, 181, 0.24);
+
+  // Controls
+  --colorControlBg: rgba(9, 2, 96, 0.06);
+  --colorControlBgHover: rgba(9, 2, 96, 0.14);
+  --colorControlBgHoverStrong: rgba(9, 2, 96, 0.26);
+  --colorControlBorder06: rgba(9, 2, 96, 0.06);
+  --colorControlBorder08: rgba(9, 2, 96, 0.08);
+  --colorControlBorder10: rgba(9, 2, 96, 0.1);
+  --colorControlBlurFallback: #090715f6;
+
+  // Input
+  --colorInputBorder08: rgba(140, 125, 181, 0.08);
+  --colorInputBorder16: rgba(140, 125, 181, 0.16);
+  --colorInputBg: rgba(9, 2, 96, 0.06);
+  --colorInputPlaceholder: rgba(16, 8, 39, 0.66);
+  --colorInputBorderHover: rgba(16, 8, 39, 0.66);
+  --colorInputBorderFocus: rgba(183, 232, 47, 0.4);
+  --colorInputTextDisabled: '';
+  --colorInputBorderDisabled: '';
+  --colorInputPlaceholderDisabled: '';
+
+  // Shared
+  --durFast: 100ms;
+  --durMed: 200ms;
+  --durNorm: 300ms;
+
+  --linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  --easeIn: cubic-bezier(0.42, 0, 1, 1);
+  --easeOut: cubic-bezier(0, 0, 0.58, 1);
+  --easeInOut: cubic-bezier(0.42, 0, 0.58, 1);
+
+  --easeInQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --easeInQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  --easeInSine: cubic-bezier(0.47, 0, 0.745, 0.715);
+  --easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --easeInCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  --easeInBack: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+  --easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+  --easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+  --easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+  --easeOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  --easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
+  --easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+  --easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+  --easeInOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }

@@ -1,0 +1,32 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  span {
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  &.isLoading {
+    pointer-events: none;
+  }
+
+  &.isDisabled {
+    span {
+      color: var(--colorTextSecondary50) !important;
+    }
+  }
+
+  &.fashion--accent {
+    span {
+      color: var(--colorGreenApple);
+    }
+  }
+
+  &.fashion--error {
+    span {
+      color: var(--colorError);
+    }
+  }
+}

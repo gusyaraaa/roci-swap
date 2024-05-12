@@ -1,0 +1,314 @@
+@mixin hover {
+  &.isClickable:not(.isLoading):not(.isDisabled):hover {
+    @content;
+  }
+}
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: default;
+  user-select: none;
+  text-decoration: none;
+  border-radius: 16px;
+  overflow: hidden;
+  line-height: 1;
+  transition: background-color ease var(--durNorm),
+    border-color ease var(--durNorm), box-shadow ease var(--durNorm);
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: opacity ease var(--durNorm);
+  }
+
+  &.isClickable {
+    cursor: pointer;
+  }
+
+  @include hover {
+    transition-duration: var(--durMed);
+
+    &:before {
+      transition-duration: var(--durMed);
+    }
+  }
+
+  &:not(.isLoading):not(.isDisabled).isClickable:active {
+    transform: translateY(1px);
+    transition-duration: var(--durMed);
+  }
+
+  & svg {
+    display: block;
+  }
+
+  &.isFullWidth {
+    width: 100%;
+    justify-content: center;
+  }
+
+  &.isDisabled {
+    cursor: default;
+    color: var(--colorInputBorder16);
+    border: 1px solid var(--colorInputBorder16);
+    background-color: transparent;
+
+    svg,
+    svg > path {
+      fill: var(--colorInputBorder16);
+    }
+  }
+
+  &.isCentered {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.size--24 {
+    padding: 0 10px;
+    height: 24px;
+    font-size: 12px;
+    border-radius: 10px;
+
+    &.isSquare {
+      width: 24px;
+    }
+  }
+
+  &.size--30 {
+    padding: 0 10px;
+    height: 30px;
+    font-size: 12px;
+
+    &.isSquare {
+      width: 30px;
+    }
+  }
+
+  &.size--40 {
+    padding: 0 20px;
+    height: 40px;
+    font-size: 14px;
+
+    &.isSquare {
+      width: 40px;
+    }
+  }
+
+  &.size--56 {
+    padding: 0 10px;
+    height: 56px;
+    font-size: 12px;
+
+    &.isSquare {
+      width: 56px;
+    }
+  }
+
+  &.size--60 {
+    padding: 0 20px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 500;
+
+    &.isSquare {
+      width: 60px;
+    }
+  }
+
+  &.size--72 {
+    padding: 0 20px;
+    height: 72px;
+    font-size: 20px;
+    font-weight: 500;
+
+    &.isSquare {
+      width: 72px;
+    }
+  }
+
+  &.size--147 {
+    padding: 17px;
+    height: 147px;
+    font-size: 12px;
+    font-weight: 500;
+
+    &.isSquare {
+      width: 147px;
+    }
+  }
+
+  &.isSquare {
+    padding: 0;
+  }
+
+  &.fashion--primary:not(.isDisabled) {
+    color: var(--colorText);
+    background: linear-gradient(100.84deg, #b36efd 32.17%, #4876fb 86.65%);
+    box-shadow: 0px 12px 40px rgba(108, 72, 251, 0.61);
+
+    &:before {
+      background: linear-gradient(234.12deg, #b36efd 36.56%, #4876fb 128.08%);
+      opacity: 0;
+    }
+
+    @include hover {
+      box-shadow: 0px 12px 80px rgba(108, 72, 251, 0.8);
+
+      &:before {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      fill: var(--colorText);
+    }
+  }
+
+  &.fashion--glass:not(.isDisabled) {
+    color: var(--colorText);
+    background-color: var(--colorControlBg);
+    border: 1px solid var(--colorControlBorder10);
+
+    @include hover {
+      background-color: var(--colorControlBgHover);
+    }
+
+    svg {
+      fill: var(--colorText);
+    }
+  }
+
+  &.fashion--glass-matte:not(.isDisabled) {
+    color: var(--colorText);
+    background-color: var(--colorControlBgHover);
+    border: 1px solid var(--colorControlBorder10);
+
+    @include hover {
+      background-color: var(--colorControlBgHoverStrong);
+    }
+
+    svg {
+      fill: var(--colorText);
+    }
+  }
+
+  &.fashion--branded:not(.isDisabled) {
+    color: var(--colorBranded);
+    background-color: var(--colorBranded08);
+    border: 1px solid var(--colorBranded16);
+
+    @include hover {
+      background-color: var(--colorBranded16);
+    }
+
+    svg {
+      fill: var(--colorBranded);
+    }
+  }
+
+  &.fashion--secondary:not(.isDisabled) {
+    color: var(--colorText);
+    background-color: rgba(222, 215, 229, 0.06);
+    border: 1px solid var(--colorInputBorder16);
+
+    @include hover {
+      background-color: var(--colorInputBorder16);
+    }
+
+    svg {
+      fill: var(--colorText);
+    }
+  }
+
+  &.fashion--accent:not(.isDisabled) {
+    color: var(--colorGreenApple);
+    border: 1px solid var(--colorGreenApple16);
+    background-color: var(--colorGreenApple08);
+
+    @include hover {
+      background-color: var(--colorGreenApple16);
+    }
+
+    svg,
+    svg > path {
+      fill: var(--colorGreenApple);
+    }
+  }
+
+  &.fashion--accent-light:not(.isDisabled) {
+    color: var(--colorGreenApple);
+    border: 1px solid var(--colorGreenApple08);
+    background-color: var(--colorGreenApple08);
+
+    @include hover {
+      background-color: var(--colorGreenApple16);
+    }
+
+    svg,
+    svg path {
+      fill: var(--colorGreenApple);
+    }
+  }
+
+  &.fashion--error:not(.isDisabled) {
+    color: var(--colorError);
+    border: 1px solid var(--colorError20);
+
+    @include hover {
+      border-color: var(--colorError40);
+      background-color: var(--colorError20);
+    }
+
+    svg {
+      fill: var(--colorError);
+    }
+  }
+
+  &.fashion--default:not(.isDisabled) {
+    color: none;
+    border: none;
+
+    @include hover {
+      border-color: none;
+      background-color: none;
+    }
+  }
+
+  &.isLoading {
+    cursor: default;
+
+    .content {
+      opacity: 0;
+    }
+  }
+}
+
+.content {
+  position: relative;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  svg {
+    display: block;
+    height: 100%;
+  }
+}

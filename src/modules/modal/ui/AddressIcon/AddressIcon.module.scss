@@ -1,0 +1,20 @@
+.walletIcon {
+  border-radius: 16px;
+  display: flex;
+  padding: 7px;
+
+  border: 1px solid var(--colorControlBorder10);
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.jazzIcon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 16px;
+  border: 1px solid var(--colorControlBorder10);
+  overflow: hidden;
+}
