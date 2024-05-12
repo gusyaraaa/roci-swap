@@ -1,0 +1,19 @@
+.wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  .inner {
+    max-width: 1112px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .wrapper {
+    .inner {
+      padding: 0 var(--containerMobilePadding);
+    }
+  }
+}
