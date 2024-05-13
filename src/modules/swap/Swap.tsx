@@ -24,7 +24,8 @@ export const Swap = () => {
     defaultValues: { rociAmount: '', goraAmount: '' },
   })
 
-  const { setValue, formState } = formMethods
+  const { watch, setValue, formState } = formMethods
+  const { rociAmount, goraAmount } = watch()
   const { isSubmitting } = formState
 
   const handleClickMaxAmount = (name: 'rociAmount' | 'goraAmount') => {
@@ -52,7 +53,7 @@ export const Swap = () => {
     <Form className={s.form} formMethods={formMethods} onSubmit={handleSubmit}>
       <InputControl
         className={s.input}
-        name="roci"
+        name="rociAmount"
         placeholder="You pay"
         concat={['bottom']}
         onlyNumber
@@ -81,7 +82,7 @@ export const Swap = () => {
       />
       <InputControl
         className={s.input}
-        name="gora"
+        name="goraAmount"
         placeholder="You receive"
         concat={['top']}
         onlyNumber
@@ -109,7 +110,11 @@ export const Swap = () => {
         }
       />
 
-      <FormSubmitter isSubmitting={isSubmitting} firstStepText="Convert" />
+      <FormSubmitter
+        isSubmitting={isSubmitting}
+        isDisabled={!rociAmount || !goraAmount}
+        firstStepText="Convert"
+      />
     </Form>
   )
 }
