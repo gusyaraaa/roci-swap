@@ -94,6 +94,9 @@ devDependencies:
   typescript:
     specifier: ^5.2.2
     version: 5.4.5
+  utility-types:
+    specifier: ^3.11.0
+    version: 3.11.0
   vite:
     specifier: ^5.2.0
     version: 5.2.11(@types/node@20.12.11)(sass@1.77.1)
@@ -9508,6 +9511,11 @@ packages:
       is-typed-array: 1.1.13
       which-typed-array: 1.1.15
     dev: false
+
+  /utility-types@3.11.0:
+    resolution: {integrity: sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==}
+    engines: {node: '>= 4'}
+    dev: true
 
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}

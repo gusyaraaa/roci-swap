@@ -77,7 +77,7 @@ export function HeaderWallet({ className }: Props) {
               <div className={s.icon}>
                 <ExitSVG />
               </div>
-              <Text>log out</Text>
+              <Text isInLine>log out</Text>
             </div>
           </div>
         </div>

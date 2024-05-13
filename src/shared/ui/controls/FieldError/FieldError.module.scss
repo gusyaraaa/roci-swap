@@ -1,0 +1,52 @@
+.message {
+  padding: 8px 24px;
+  position: absolute;
+  right: -1px;
+  width: calc(100% + 2px);
+  border-radius: 18px;
+  border: 1px solid var(--colorError40);
+  color: var(--colorTextSecondary80);
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0;
+  background-color: var(--colorBgError);
+  transform: scale(0, 0);
+  transition:
+    opacity ease var(--durNorm) 50ms,
+    transform ease var(--durNorm) 100ms;
+  z-index: 1;
+  background-color: var(--colorError24);
+  backdrop-filter: blur(28px);
+
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+
+      path {
+        fill: var(--colorError);
+      }
+    }
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  &.toTop {
+    bottom: calc(100% + 8px);
+    transform-origin: bottom right;
+  }
+
+  &.toBottom {
+    top: calc(100% + 8px);
+    transform-origin: top right;
+  }
+}

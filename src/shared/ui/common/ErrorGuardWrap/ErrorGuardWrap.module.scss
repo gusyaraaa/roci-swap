@@ -1,0 +1,11 @@
+.isFaded {
+  pointer-events: none;
+  div,
+  button {
+    opacity: 0.4;
+  }
+}
+
+.cta {
+  margin-top: 16px;
+}
