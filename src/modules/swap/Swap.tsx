@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { useWeb3 } from 'modules/blockchain/hooks/useWeb3'
@@ -8,6 +9,10 @@ import { Form } from 'shared/ui/controls/FormNetworkGuarded'
 import { InputControl } from 'shared/ui/controls/Input'
 import { InputMaxAction } from 'shared/ui/controls/InputMaxAction'
 import * as formErrors from 'shared/constants/formErrors'
+import { useSwapFormData } from './useSwapFormData'
+
+import RociSVG from 'assets/asset-roci.svg?react'
+import GoraSVG from 'assets/asset-gora.svg?react'
 
 import s from './Swap.module.scss'
 
@@ -25,20 +30,32 @@ export const Swap = () => {
   })
 
   const { watch, setValue, formState } = formMethods
-  const { rociAmount, goraAmount } = watch()
+  const { rociAmount } = watch()
   const { isSubmitting } = formState
 
-  const handleClickMaxAmount = (name: 'rociAmount' | 'goraAmount') => {
-    setValue(
-      name,
-      // `${
-      //   walletBalance <= stakingPool.amountRemained
-      //     ? walletBalance
-      //     : stakingPool.amountRemained
-      // }`,
-      '1000',
-      // { shouldValidate: true },
-    )
+  const {
+    rociBalance,
+    goraBalance,
+    goraPrice,
+    goraAmount,
+    isFetching,
+    isLoading,
+  } = useSwapFormData({
+    rociAmount,
+  })
+
+  useEffect(() => {
+    if (isFetching) {
+      return setValue('goraAmount', 'loading...')
+    }
+    if (goraAmount) {
+      return setValue('goraAmount', `${goraAmount}`)
+    }
+    setValue('goraAmount', '')
+  }, [goraAmount])
+
+  const handleClickMaxAmount = (name: 'rociAmount') => () => {
+    setValue(name, `${rociBalance}`, { shouldValidate: true })
   }
 
   const handleSubmit = (values: FormValues) => {
@@ -60,24 +77,30 @@ export const Swap = () => {
         rules={{
           required: formErrors.required,
           validate: (val: string) =>
-            // formErrors.weiParsing(val, stakingPool.assetDecimals) ||
-            // formErrors.floorValue(val, stakingPool.assetDecimals) ||
-            // formErrors.minValue(val, 100, stakingPool.assetDecimals) ||
-            // formErrors.maxValue(
-            //   val,
-            //   stakingPool.amountRemained || stakingPool.maxCapacity,
-            //   stakingPool.assetDecimals,
-            // ) ||
-            // formErrors.balance(
-            //   val,
-            //   walletBalance,
-            //   stakingPool.asset.label,
-            //   stakingPool.assetDecimals,
-            // ) ||
+            formErrors.weiParsing(val, 18) ||
+            formErrors.floorValue(val, 18) ||
+            formErrors.minValue(val, goraPrice, 18) ||
+            formErrors.balance(val, rociBalance, '$ROCI', 18) ||
             true,
         }}
         action={
-          <InputMaxAction onClick={() => handleClickMaxAmount('rociAmount')} />
+          <div className={s.action}>
+            <div className={s.asset}>
+              <Text size={18} isInLine isUppercased>
+                $Roci
+              </Text>
+              <RociSVG />
+            </div>
+            <div className={s.info}>
+              <Text size={12} color="secondary80" isInLine>
+                Balance:{' '}
+                {isLoading ? 'loading...' : Number(rociBalance.toFixed(5))}
+              </Text>
+              {rociBalance > 0 && (
+                <InputMaxAction onClick={handleClickMaxAmount('rociAmount')} />
+              )}
+            </div>
+          </div>
         }
       />
       <InputControl
@@ -86,33 +109,28 @@ export const Swap = () => {
         placeholder="You receive"
         concat={['top']}
         onlyNumber
-        rules={{
-          required: formErrors.required,
-          validate: (val: string) =>
-            // formErrors.weiParsing(val, stakingPool.assetDecimals) ||
-            // formErrors.floorValue(val, stakingPool.assetDecimals) ||
-            // formErrors.minValue(val, 100, stakingPool.assetDecimals) ||
-            // formErrors.maxValue(
-            //   val,
-            //   stakingPool.amountRemained || stakingPool.maxCapacity,
-            //   stakingPool.assetDecimals,
-            // ) ||
-            // formErrors.balance(
-            //   val,
-            //   walletBalance,
-            //   stakingPool.asset.label,
-            //   stakingPool.assetDecimals,
-            // ) ||
-            true,
-        }}
+        readOnly
         action={
-          <InputMaxAction onClick={() => handleClickMaxAmount('goraAmount')} />
+          <div className={s.action}>
+            <div className={s.asset}>
+              <Text size={18} isInLine isUppercased>
+                $Gora
+              </Text>
+              <GoraSVG className={s.goraSVG} />
+            </div>
+            <div className={s.info}>
+              <Text size={12} color="secondary80" isInLine>
+                Balance:{' '}
+                {isLoading ? 'loading...' : Number(goraBalance.toFixed(5))}
+              </Text>
+            </div>
+          </div>
         }
       />
 
       <FormSubmitter
         isSubmitting={isSubmitting}
-        isDisabled={!rociAmount || !goraAmount}
+        isDisabled={isLoading || isFetching || !rociAmount}
         firstStepText="Convert"
       />
     </Form>

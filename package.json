@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.35.5",
+    "bignumber.js": "^9.1.2",
     "classnames": "^2.5.1",
     "ethers": "^6.12.1",
     "react": "^18.2.0",
@@ -20,6 +21,7 @@
     "react-hook-form": "^7.51.4",
     "react-jazzicon": "^1.0.4",
     "react-router-dom": "^6.23.1",
+    "swr": "^2.2.5",
     "viem": "2.x",
     "wagmi": "^2.8.6"
   },

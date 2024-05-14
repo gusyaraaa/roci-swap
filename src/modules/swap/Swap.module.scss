@@ -6,6 +6,33 @@
   margin: 110px auto 0;
 
   .input {
-    height: 70px;
+    padding: 10px 0;
+  }
+}
+
+.action {
+  .asset {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-bottom: 10px;
+    min-height: 40px;
+
+    > svg {
+      width: 40px;
+      height: 40px;
+    }
+    .goraSVG {
+      padding: 5px;
+      padding-left: 2px;
+    }
+  }
+
+  .info {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    white-space: nowrap;
   }
 }
