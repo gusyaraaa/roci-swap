@@ -18,7 +18,7 @@ export const useSwapFormData = (args: Args) => {
   const { chainId, walletAddress } = useWeb3()
   const signer = useEthersSigner()
 
-  const { data, isLoading } = useSWR(
+  const { data } = useSWR(
     `swap-form-${chainId}-${signer}-${walletAddress}-${rociAmount}`,
     async () => {
       if (!signer || !walletAddress) return
@@ -59,8 +59,5 @@ export const useSwapFormData = (args: Args) => {
     goraAmount: data?.goraAmount
       ? Number(data.goraAmount.toFixed(5))
       : undefined,
-    isFetching:
-      rociAmount && isLoading && (!data?.goraPrice || !data?.goraAmount),
-    isLoading,
   }
 }

@@ -1,0 +1,27 @@
+.pageLoaderWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+
+  &.isFullHeight {
+    padding-top: 0;
+    min-height: calc(100vh - 130px);
+  }
+
+  svg {
+    display: block;
+    width: 120px;
+    height: 120px;
+    path {
+      stroke-dasharray: 100;
+      animation: dash 12s linear infinite;
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 1000;
+      }
+    }
+  }
+}

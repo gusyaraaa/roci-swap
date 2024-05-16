@@ -8,6 +8,15 @@
   .input {
     padding: 10px 0;
   }
+  .notWhitelisted {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    > svg {
+      flex: 1 0 auto;
+    }
+  }
 }
 
 .action {
