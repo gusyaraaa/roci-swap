@@ -9,9 +9,9 @@ export const ContractRociConverter = createContractHelpers({
   version: '1.0.0',
   address: {
     [mainnet.id]: '',
-    [sepolia.id]: '0xc5677EaA6e6e3c32B8Ed1D9Ac5a30A606989A72B',
+    [sepolia.id]: '0xbF74Cef2051B7DdbCFE4868149feBAD00f1C120D',
   },
   testAddress: {
-    [sepolia.id]: '0xc5677EaA6e6e3c32B8Ed1D9Ac5a30A606989A72B',
+    [sepolia.id]: '0xbF74Cef2051B7DdbCFE4868149feBAD00f1C120D',
   },
 })

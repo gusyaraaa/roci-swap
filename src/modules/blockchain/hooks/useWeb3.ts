@@ -1,9 +1,9 @@
-import { useAccount, useEnsAvatar, useEnsName } from 'wagmi'
+import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi'
 import { DEFAULT_CHAIN, SUPPORTED_CHAINS } from 'config'
-import { useMemo } from 'react'
 
 export const useWeb3 = () => {
   const { address, isConnected, connector, chainId } = useAccount()
+  const { disconnect } = useDisconnect()
   const { data: ensName } = useEnsName({ address })
   const { data: ensAvatar } = useEnsAvatar({ name: ensName! })
 

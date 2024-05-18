@@ -10,8 +10,9 @@ import { InputControl } from 'shared/ui/controls/Input'
 import { InputMaxAction } from 'shared/ui/controls/InputMaxAction'
 import { PageLoader } from 'shared/ui/layout/PageLoader'
 import * as formErrors from 'shared/constants/formErrors'
-import { useSwap } from './useSwap'
-import { useSwapFormData } from './useSwapFormData'
+import { useSwapProof } from './hooks/useSwapProof'
+import { useSwapFormData } from './hooks/useSwapFormData'
+import { useSwapSubmit } from './hooks/useSwapSubmit'
 
 import RociSVG from 'assets/asset-roci.svg?react'
 import GoraSVG from 'assets/asset-gora.svg?react'
@@ -31,18 +32,19 @@ export type SuccessSwapData = FormValues & {
 
 export const Swap = () => {
   const { isWalletConnected } = useWeb3()
-  const { catId, proof, isLoading } = useSwap()
+  const { catId, proof, isLoading } = useSwapProof()
+  const { submit, isLoading: isSubmitLoading } = useSwapSubmit()
 
   const formMethods = useForm<FormValues>({
     mode: 'onBlur',
     defaultValues: { rociAmount: '', goraAmount: '' },
   })
-
   const { watch, setValue, formState } = formMethods
   const { rociAmount } = watch()
   const { isSubmitting } = formState
 
   const { rociBalance, goraBalance, goraPrice, goraAmount } = useSwapFormData({
+    catId: Number(catId),
     rociAmount,
   })
 
@@ -53,25 +55,24 @@ export const Swap = () => {
     setValue('goraAmount', '')
   }, [goraAmount])
 
-  const handleClickMaxAmount = (name: 'rociAmount') => () => {
-    setValue(name, `${rociBalance}`, { shouldValidate: true })
-  }
-
-  const handleSubmit = (values: FormValues) => {
-    console.log(values)
-  }
-
-  if (isLoading) {
-    return <PageLoader isFullHeight />
+  const handleSubmit = async (values: FormValues) => {
+    if (submit && catId && proof) {
+      await submit(values.rociAmount, Number(catId), proof)
+      setValue('rociAmount', '')
+    }
   }
 
   if (!isWalletConnected) {
     return <ConnectWalletScreen />
   }
 
+  if (isLoading) {
+    return <PageLoader isFullHeight />
+  }
+
   return (
     <Form className={s.form} formMethods={formMethods} onSubmit={handleSubmit}>
-      <Text>1 $GORA = {goraPrice} $ROCI</Text>
+      <Text>1 $ROCI = {goraPrice} $GORA</Text>
       <InputControl
         className={s.input}
         name="rociAmount"
@@ -83,7 +84,6 @@ export const Swap = () => {
           validate: (val: string) =>
             formErrors.weiParsing(val, 18) ||
             formErrors.floorValue(val, 18) ||
-            formErrors.minValue(val, goraPrice, 18) ||
             formErrors.balance(val, rociBalance, '$ROCI', 18) ||
             true,
         }}
@@ -100,7 +100,13 @@ export const Swap = () => {
                 Balance: {Number(rociBalance.toFixed(5))}
               </Text>
               {rociBalance > 0 && (
-                <InputMaxAction onClick={handleClickMaxAmount('rociAmount')} />
+                <InputMaxAction
+                  onClick={() =>
+                    setValue('rociAmount', `${rociBalance}`, {
+                      shouldValidate: true,
+                    })
+                  }
+                />
               )}
             </div>
           </div>
@@ -143,7 +149,9 @@ export const Swap = () => {
 
       <FormSubmitter
         isSubmitting={isSubmitting}
-        isDisabled={!rociAmount || !goraAmount || !catId || !proof}
+        isDisabled={
+          !rociAmount || !goraAmount || !catId || !proof || isSubmitLoading
+        }
         firstStepText="Convert"
       />
     </Form>

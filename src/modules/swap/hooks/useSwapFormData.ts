@@ -10,18 +10,19 @@ import {
 import { weiToNum } from 'modules/blockchain/utils/parseWei'
 
 type Args = {
+  catId: number | undefined
   rociAmount: string
 }
 
 export const useSwapFormData = (args: Args) => {
-  const { rociAmount } = args
+  const { catId, rociAmount } = args
   const { chainId, walletAddress } = useWeb3()
   const signer = useEthersSigner()
 
   const { data } = useSWR(
-    `swap-form-${chainId}-${signer}-${walletAddress}-${rociAmount}`,
+    `swap-form-${chainId}-${signer}-${walletAddress}-${rociAmount}-${catId}`,
     async () => {
-      if (!signer || !walletAddress) return
+      if (!signer || !walletAddress || !catId) return
 
       const rociConverter = ContractRociConverter.connectWeb3({
         signer,
@@ -39,14 +40,15 @@ export const useSwapFormData = (args: Args) => {
       const [rociBalance, goraBalance, goraPrice] = await Promise.all([
         rociToken.balanceOf(walletAddress),
         goraToken.balanceOf(walletAddress),
-        rociConverter.categoryPrice(2),
+        rociConverter.categoryPrice(catId),
       ])
+      const priceRatio = Number(goraPrice) / 10000
 
       return {
         rociBalance: weiToNum(rociBalance, 18),
         goraBalance: weiToNum(goraBalance, 18),
-        goraPrice: Number(goraPrice),
-        goraAmount: Number(rociAmount) / Number(goraPrice),
+        goraPrice: priceRatio,
+        goraAmount: Number(rociAmount) * priceRatio,
       }
     },
     { keepPreviousData: true },
