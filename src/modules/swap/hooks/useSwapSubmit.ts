@@ -2,7 +2,7 @@ import useSWR from 'swr'
 
 import { useWeb3 } from 'modules/blockchain/hooks/useWeb3'
 import { useEthersSigner } from 'modules/blockchain/hooks/useEthersSigner'
-import { strToWei, weiToNum } from 'modules/blockchain/utils/parseWei'
+import { strToWei } from 'modules/blockchain/utils/parseWei'
 import {
   ContractROCI,
   ContractRociConverter,
@@ -45,7 +45,12 @@ export const useSwapSubmit = () => {
           )
           await signer.provider.waitForTransaction(approveTxReceipt.hash)
         }
-        await rociConverter.convert(weiAmount, catId, proof)
+        const convertTxReceipt = await rociConverter.convert(
+          weiAmount,
+          catId,
+          proof,
+        )
+        return convertTxReceipt
       }
 
       return { submit }

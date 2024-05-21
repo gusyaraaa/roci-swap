@@ -1,0 +1,31 @@
+.wrap {
+  margin-bottom: 34px;
+}
+
+.title {
+  margin-bottom: 24px;
+  width: fit-content;
+  line-height: 38px;
+  mask-image: linear-gradient(
+    93.01deg,
+    var(--colorGreenApple) 1.48%,
+    var(--colorGreenApple08) 123.66%
+  );
+  -webkit-mask-image: linear-gradient(
+    93.01deg,
+    var(--colorGreenApple) 1.48%,
+    var(--colorGreenApple08) 123.66%
+  );
+}
+
+.explorer {
+  color: var(--colorGreenApple);
+}
+
+.linkText {
+  margin-right: 20px;
+}
+
+.progress {
+  margin-bottom: 30px;
+}

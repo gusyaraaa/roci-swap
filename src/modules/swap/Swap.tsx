@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { useWeb3 } from 'modules/blockchain/hooks/useWeb3'
@@ -9,10 +9,12 @@ import { Form } from 'shared/ui/controls/FormNetworkGuarded'
 import { InputControl } from 'shared/ui/controls/Input'
 import { InputMaxAction } from 'shared/ui/controls/InputMaxAction'
 import { PageLoader } from 'shared/ui/layout/PageLoader'
+import { Button } from 'shared/ui/controls/Button'
 import * as formErrors from 'shared/constants/formErrors'
 import { useSwapProof } from './hooks/useSwapProof'
 import { useSwapFormData } from './hooks/useSwapFormData'
 import { useSwapSubmit } from './hooks/useSwapSubmit'
+import { SentTransaction } from './ui/SentTransaction'
 
 import RociSVG from 'assets/asset-roci.svg?react'
 import GoraSVG from 'assets/asset-gora.svg?react'
@@ -34,6 +36,7 @@ export const Swap = () => {
   const { isWalletConnected } = useWeb3()
   const { catId, proof, isLoading } = useSwapProof()
   const { submit, isLoading: isSubmitLoading } = useSwapSubmit()
+  const [txHash, setTxHash] = useState<string | undefined>(undefined)
 
   const formMethods = useForm<FormValues>({
     mode: 'onBlur',
@@ -57,8 +60,12 @@ export const Swap = () => {
 
   const handleSubmit = async (values: FormValues) => {
     if (submit && catId && proof) {
-      await submit(values.rociAmount, Number(catId), proof)
-      setValue('rociAmount', '')
+      const convertTxReceipt = await submit(
+        values.rociAmount,
+        Number(catId),
+        proof,
+      )
+      setTxHash(convertTxReceipt.hash)
     }
   }
 
@@ -70,9 +77,31 @@ export const Swap = () => {
     return <PageLoader isFullHeight />
   }
 
+  if (txHash) {
+    return (
+      <div className={s.tx}>
+        <SentTransaction
+          txHash={txHash}
+          payAmount={rociAmount}
+          receiveAmount={goraAmount ? `${goraAmount}` : undefined}
+        />
+        <Button
+          className={s.continueBtn}
+          fashion="accent"
+          onClick={() => {
+            setValue('rociAmount', '')
+            setTxHash(undefined)
+          }}
+        >
+          Continue
+        </Button>
+      </div>
+    )
+  }
+
   return (
     <Form className={s.form} formMethods={formMethods} onSubmit={handleSubmit}>
-      <Text>1 $ROCI = {goraPrice} $GORA</Text>
+      <Text>1 $ROCI = {goraPrice ?? 0} $GORA</Text>
       <InputControl
         className={s.input}
         name="rociAmount"

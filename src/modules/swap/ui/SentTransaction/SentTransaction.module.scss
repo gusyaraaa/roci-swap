@@ -1,0 +1,14 @@
+.wrap {
+  max-width: 520px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.column {
+  width: 50%;
+  margin-bottom: 30px;
+}
