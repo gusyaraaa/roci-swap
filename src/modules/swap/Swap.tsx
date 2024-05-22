@@ -169,8 +169,8 @@ export const Swap = () => {
           <WarningSVG />
           <Text color="warning">
             You're not whilelisted for conversion, please contact us{' '}
-            <a href="https://t.me/rociofficial" target="_blank">
-              t.me/rociofficial
+            <a href="https://t.me/rocifi" target="_blank">
+              t.me/rocifi
             </a>
           </Text>
         </div>
