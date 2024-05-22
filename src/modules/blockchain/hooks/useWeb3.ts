@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useAccount, useEnsAvatar, useEnsName } from 'wagmi'
 import { DEFAULT_CHAIN, SUPPORTED_CHAINS } from 'config'
 
@@ -6,6 +7,13 @@ export const useWeb3 = () => {
   const { data: ensName } = useEnsName({ address })
   const { data: ensAvatar } = useEnsAvatar({ name: ensName! })
 
+  const isChainUnsupported = useMemo(() => {
+    if (chainId) {
+      return !SUPPORTED_CHAINS.includes(chainId)
+    }
+    return true
+  }, [chainId])
+
   return {
     isWalletConnected: isConnected,
     walletAddress: address,
@@ -13,8 +21,7 @@ export const useWeb3 = () => {
     ensAvatar,
     defaultChain: DEFAULT_CHAIN,
     chainId: chainId ?? DEFAULT_CHAIN,
-    isChainUnsupported:
-      chainId && !(SUPPORTED_CHAINS as number[]).includes(chainId),
+    isChainUnsupported,
     walletName: connector?.name as 'MetaMask' | 'WalletConnect' | undefined,
   }
 }
