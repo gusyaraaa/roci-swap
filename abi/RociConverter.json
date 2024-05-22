@@ -1,11 +1,7 @@
 [
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "admin",
-        "type": "address"
-      },
+      { "internalType": "address", "name": "admin", "type": "address" },
       {
         "internalType": "contract IERC20",
         "name": "_rociToken",
@@ -20,67 +16,31 @@
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
-  {
-    "inputs": [],
-    "name": "ConversionDisabled",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "DefaultCategory",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotWhitelisted",
-    "type": "error"
-  },
+  { "inputs": [], "name": "ConversionDisabled", "type": "error" },
+  { "inputs": [], "name": "DefaultCategory", "type": "error" },
+  { "inputs": [], "name": "NotWhitelisted", "type": "error" },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "owner",
-        "type": "address"
-      }
+      { "internalType": "address", "name": "owner", "type": "address" }
     ],
     "name": "OwnableInvalidOwner",
     "type": "error"
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
+      { "internalType": "address", "name": "account", "type": "address" }
     ],
     "name": "OwnableUnauthorizedAccount",
     "type": "error"
   },
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
+    "inputs": [{ "internalType": "string", "name": "", "type": "string" }],
     "name": "ZeroAddress",
     "type": "error"
   },
+  { "inputs": [], "name": "ZeroGoraTransfer", "type": "error" },
   {
-    "inputs": [],
-    "name": "ZeroGoraTransfer",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
+    "inputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
     "name": "ZeroPrice",
     "type": "error"
   },
@@ -161,60 +121,24 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
+    "inputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
     "name": "categoryName",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
+    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
+    "inputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
     "name": "categoryPrice",
-    "outputs": [
-      {
-        "internalType": "uint32",
-        "name": "",
-        "type": "uint32"
-      }
-    ],
+    "outputs": [{ "internalType": "uint32", "name": "", "type": "uint32" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amountRoci",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint8",
-        "name": "catId",
-        "type": "uint8"
-      },
-      {
-        "internalType": "bytes32[]",
-        "name": "_proof",
-        "type": "bytes32[]"
-      }
+      { "internalType": "uint256", "name": "amountRoci", "type": "uint256" },
+      { "internalType": "uint8", "name": "catId", "type": "uint8" },
+      { "internalType": "bytes32[]", "name": "_proof", "type": "bytes32[]" }
     ],
     "name": "convert",
     "outputs": [],
@@ -222,13 +146,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "bool",
-        "name": "set",
-        "type": "bool"
-      }
-    ],
+    "inputs": [{ "internalType": "bool", "name": "set", "type": "bool" }],
     "name": "enable",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -238,11 +156,7 @@
     "inputs": [],
     "name": "goraToken",
     "outputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "",
-        "type": "address"
-      }
+      { "internalType": "contract IERC20", "name": "", "type": "address" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -250,26 +164,14 @@
   {
     "inputs": [],
     "name": "owner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "pendingOwner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
@@ -291,11 +193,7 @@
     "inputs": [],
     "name": "rociToken",
     "outputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "",
-        "type": "address"
-      }
+      { "internalType": "contract IERC20", "name": "", "type": "address" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -303,35 +201,17 @@
   {
     "inputs": [],
     "name": "root",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "uint8",
-        "name": "id",
-        "type": "uint8"
-      },
+      { "internalType": "uint8", "name": "id", "type": "uint8" },
       {
         "components": [
-          {
-            "internalType": "string",
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "internalType": "uint32",
-            "name": "price",
-            "type": "uint32"
-          }
+          { "internalType": "string", "name": "name", "type": "string" },
+          { "internalType": "uint32", "name": "price", "type": "uint32" }
         ],
         "internalType": "struct RociConverter.Category",
         "name": "_category",
@@ -345,11 +225,7 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "_root",
-        "type": "bytes32"
-      }
+      { "internalType": "bytes32", "name": "_root", "type": "bytes32" }
     ],
     "name": "setWhitelistRoot",
     "outputs": [],
@@ -358,11 +234,7 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
+      { "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "transferOwnership",
     "outputs": [],
