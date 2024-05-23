@@ -154,7 +154,7 @@ export const Swap = () => {
               <Text size={18} isInLine isUppercased>
                 $Gora
               </Text>
-              <GoraSVG className={s.goraSVG} />
+              <GoraSVG />
             </div>
             <div className={s.info}>
               <Text size={12} color="secondary80" isInLine>
